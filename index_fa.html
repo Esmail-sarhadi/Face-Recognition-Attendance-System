@@ -1,179 +1,158 @@
 <!DOCTYPE html>
 <html lang="fa">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>سیستم حضور و غیاب با تشخیص چهره 📸 | سیستم-حضور-و-غیاب-با-تشخیص-چهره</title>
-    <link rel="shortcut icon" type="image/png" href="android-chrome-512x512.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="vqq11CWNVkLVnZvjCeZReKc8-FRmgxek2SOWjr35CbY" />
+    <link rel="shortcut icon" type="image/png" href="android-chrome-512x512.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>سیستم حضور و غیاب با شناسایی چهره 📸 | Face-Recognition-Attendance-System</title>
+    <meta name="description" content="یک سیستم حضور و غیاب نوآورانه مبتنی بر شناسایی چهره با استفاده از وب‌کم برای گرفتن و شناسایی لحظه‌ای چهره‌ها. به طور مؤثر جزئیات حضور را در یک فایل CSV با استفاده از کتابخانه face_recognition و OpenCV ثبت می‌کند." />
     <link rel="stylesheet" href="/Face-Recognition-Attendance-System/assets/css/style.css?v=4e41b1e5a6720d1847102641cd1e20b93f57da5c">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        line-height: 1.6;
-        color: #24292e;
-        background-color: #f6f8fa;
-      }
-      .container-lg {
-        max-width: 1012px;
-        margin-right: auto;
-        margin-left: auto;
-      }
-      h1, h2 {
-        border-bottom: 1px solid #eaecef;
-        padding-bottom: 0.3em;
-      }
-      .markdown-body {
-        box-sizing: border-box;
-        min-width: 200px;
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 45px;
-        background-color: #fff;
-        border: 1px solid #e1e4e8;
-        border-radius: 6px;
-      }
-      @media (max-width: 767px) {
-        .markdown-body {
-          padding: 15px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            color: #24292e;
+            background-color: #f6f8fa;
         }
-      }
-      .footer {
-        margin-top: 3rem;
-        padding-top: 2rem;
-        color: #586069;
-        border-top: 1px solid #eaecef;
-      }
-      .feature-list {
-        list-style-type: none;
-        padding-left: 0;
-      }
-      .feature-list li {
-        margin-bottom: 0.5rem;
-      }
-      .feature-list li:before {
-        content: "\f00c";
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        margin-right: 0.5rem;
-        color: #28a745;
-      }
-      .donation-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #0366d6;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 6px;
-        transition: background-color 0.2s;
-      }
-      .donation-button:hover {
-        background-color: #044289;
-      }
-      .language-switch {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        display: flex;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 10px;
-        border-radius: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-      .language-switch img {
-        transition: transform 0.3s ease;
-      }
-      .language-switch img:hover {
-        transform: scale(1.1);
-      }
+        .container-lg {
+            max-width: 1012px;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1, h2 {
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #586069;
+        }
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            margin-bottom: 0.5rem;
+        }
+        .feature-list li:before {
+            content: "\f00c";
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 0.5rem;
+            color: #28a745;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0366d6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #044289;
+        }
+        .language-switch {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .language-switch img {
+            transition: transform 0.3s ease;
+        }
+        .language-switch img:hover {
+            transform: scale(1.1);
+        }
+        .animate__animated {
+            animation-duration: 1s;
+        }
+        /* CSS for RTL Layout */
+        body {
+            direction: rtl;
+        }
+        .language-switch {
+            left: 10px;
+            right: auto;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container-lg px-3 my-5 markdown-body">
-      
-      <div class="language-switch">
-        <span style="font-size: 1.2em; font-weight: bold; margin-right: 10px;">زبان</span>
-        <a href="index.html" style="text-decoration: none; margin: 0 5px;">
-          <img src="https://flagcdn.com/w40/gb.png" width="30" alt="English">
-        </a>
-        <a href="index_fa.html" style="text-decoration: none; margin: 0 5px;">
-          <img src="https://flagcdn.com/w40/ir.png" width="30" alt="Persian">
-        </a>
-      </div>
-      
-      <h1><a href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/">سیستم حضور و غیاب با تشخیص چهره</a></h1>
-
-      <h1 id="face-recognition-attendance-system">سیستم حضور و غیاب با تشخیص چهره 📸👤</h1>
-
-      <p>این پروژه یک سیستم حضور و غیاب نوآورانه با استفاده از تشخیص چهره است که از وب‌کم برای ثبت و شناسایی چهره‌ها در زمان واقعی استفاده می‌کند. سیستم چهره‌های ثبت شده را با چهره‌های شناخته شده مقایسه کرده و جزئیات حضور و غیاب (نام و زمان) را در فایل CSV ثبت می‌کند. این پروژه از کتابخانه <code class="language-plaintext highlighter-rouge">face_recognition</code> برای تشخیص و شناسایی چهره و از OpenCV برای پردازش ویدیویی استفاده می‌کند.</p>
-
-      <h2 id="features">✨ ویژگی‌ها</h2>
-
-      <ul class="feature-list">
-        <li><strong>تشخیص و شناسایی چهره در زمان واقعی</strong>: تصاویر ویدیویی را از وب‌کم گرفته و چهره‌ها را در زمان واقعی شناسایی می‌کند.</li>
-        <li><strong>ثبت حضور و غیاب</strong>: جزئیات حضور و غیاب (نام و زمان) را در فایل CSV ثبت می‌کند.</li>
-        <li><strong>مدیریت چهره‌های شناخته شده</strong>: به آسانی می‌توان چهره‌های شناخته شده را برای شناسایی اضافه و مدیریت کرد.</li>
-        <li><strong>بازخورد تصویری</strong>: یک مستطیل و برچسب نام را دور چهره‌های شناسایی شده در تصویر ویدیویی نمایش می‌دهد.</li>
-      </ul>
-
-      <h2 id="requirements">🛠️ الزامات</h2>
-
-      <ul>
-        <li>پایتون ۳.۶+ 🐍</li>
-        <li>OpenCV 📸</li>
-        <li>face_recognition 👤</li>
-        <li>numpy 🧮</li>
-      </ul>
-
-      <h2 id="installation">🚀 نصب</h2>
-
-      <ol>
-        <li><strong>کلون کردن مخزن</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/face-recognition-attendance.git
-<span class="nb">cd </span>face-recognition-attendance
-</code></pre></div></div>
-        </li>
-        <li><strong>نصب بسته‌های مورد نیاز</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>opencv-python face_recognition numpy
-</code></pre></div></div>
-        </li>
-        <li><strong>تهیه تصاویر چهره‌های شناخته شده</strong>
-          <ul>
-            <li>تصاویر چهره‌های شناخته شده خود را در دایرکتوری <code class="language-plaintext highlighter-rouge">photos</code> قرار دهید.</li>
-            <li>اطمینان حاصل کنید که تصاویر با نام‌های مناسب (مانند <code class="language-plaintext highlighter-rouge">john_doe.jpg</code>) نام‌گذاری شده‌اند.</li>
-          </ul>
-        </li>
-        <li><strong>اجرای برنامه</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python main.py
-</code></pre></div></div>
-        </li>
-      </ol>
-
-      <h2 id="usage">📋 استفاده</h2>
-
-      <p>پس از اجرای برنامه، فید وب‌کم نمایش داده می‌شود. سیستم چهره‌ها را در زمان واقعی شناسایی و تشخیص می‌دهد. اگر چهره‌ای شناسایی شود، نام در فید ویدیویی نمایش داده می‌شود و جزئیات حضور و غیاب در فایلی با نام <code class="language-plaintext highlighter-rouge">attendance.csv</code> ثبت خواهد شد.</p>
-
-      <h2 id="contributing">🤝 مشارکت</h2>
-
-      <p>مشارکت‌ها خوش آمدید! برای بهبود پروژه، لطفاً مسائل یا درخواست‌های کشش خود را باز کنید.</p>
-
-      <h2 id="license">📄 مجوز</h2>
-
-      <p>این پروژه تحت مجوز MIT منتشر شده است - برای جزئیات بیشتر به فایل <a href="/Face-Recognition-Attendance-System/LICENSE">LICENSE</a> مراجعه کنید.</p>
-
-      <h2 id="acknowledgments">🙏 قدردانی‌ها</h2>
-
-      <ul>
-        <li>تشکر ویژه از مشارکت‌کنندگان کتابخانه <code class="language-plaintext highlighter-rouge">face_recognition</code>.</li>
-        <li>الهام و راهنمایی از جامعه متن‌باز.</li>
-      </ul>
-
-      <div class="footer">
-        <p>ایجاد شده با ❤️ توسط <span class="author-name">Esmail Sarhadi</span></p>
-        <p>این سایت متن‌باز است. <a href="https://github.com/Esmail-sarhadi/Face-Recognition-Attendance-System/edit/main/README.md">این صفحه را بهبود دهید</a>.</p>
-      </div>
+        <div class="language-switch">
+            <span style="font-size: 1.2em; font-weight: bold; margin-left: 10px;">زبان</span>
+            <a href="index.html" style="text-decoration: none; margin: 0 5px;">
+                <img src="https://flagcdn.com/w40/gb.png" width="30" alt="English">
+            </a>
+            <a href="index_fa.html" style="text-decoration: none; margin: 0 5px;">
+                <img src="https://flagcdn.com/w40/ir.png" width="30" alt="Persian">
+            </a>
+        </div>
+        <h1 class="animate__animated animate__fadeInDown"><a href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/">سیستم حضور و غیاب با شناسایی چهره 📸</a></h1>
+        <p class="animate__animated animate__fadeIn">این پروژه یک سیستم حضور و غیاب نوآورانه بر اساس شناسایی چهره با استفاده از وب‌کم را پیاده‌سازی می‌کند. این سیستم چهره‌ها را در زمان واقعی شناسایی کرده و جزئیات حضور (نام و زمان) را در یک فایل CSV ثبت می‌کند.</p>
+        <h2 id="features" class="animate__animated animate__fadeInRight">✨ ویژگی‌ها</h2>
+        <ul class="feature-list animate__animated animate__fadeInUp">
+            <li><strong>شناسایی و تشخیص چهره در زمان واقعی</strong>: دریافت فریم‌های ویدیویی از وب‌کم و شناسایی چهره‌ها در زمان واقعی.</li>
+            <li><strong>ثبت حضور</strong>: جزئیات حضور (نام و زمان) را در یک فایل CSV ثبت می‌کند.</li>
+            <li><strong>مدیریت چهره‌های شناخته شده</strong>: افزودن و مدیریت چهره‌های شناخته شده برای شناسایی آسان.</li>
+            <li><strong>بازخورد بصری</strong>: نمایش مستطیل و برچسب نام در اطراف چهره‌های شناسایی شده در فید ویدیویی.</li>
+        </ul>
+        <h2 id="requirements" class="animate__animated animate__fadeInRight">🛠️ پیش‌نیازها</h2>
+        <ul>
+            <li>پایتون 3.6+ 🐍</li>
+            <li>OpenCV 📸</li>
+            <li>face_recognition 👤</li>
+            <li>numpy 🧮</li>
+        </ul>
+        <h2 id="installation" class="animate__animated animate__fadeInRight">🚀 نصب</h2>
+        <ol>
+            <li><strong>کلون کردن مخزن</strong>
+                <pre><code>git clone https://github.com/your-username/face-recognition-attendance.git
+cd face-recognition-attendance
+</code></pre>
+            </li>
+            <li><strong>نصب بسته‌های مورد نیاز</strong>
+                <pre><code>pip install opencv-python face_recognition numpy
+</code></pre>
+            </li>
+            <li><strong>آماده‌سازی تصاویر چهره‌های شناخته شده</strong>
+                <ul>
+                    <li>تصاویر چهره‌های شناخته شده خود را در پوشه <code>photos</code> قرار دهید.</li>
+                    <li>اطمینان حاصل کنید که تصاویر با نام‌های مناسب (مثلاً <code>john_doe.jpg</code>) نام‌گذاری شده‌اند.</li>
+                </ul>
+            </li>
+            <li><strong>اجرا کردن برنامه</strong>
+                <pre><code>python main.py
+</code></pre>
+            </li>
+        </ol>
+        <h2 id="usage" class="animate__animated animate__fadeInRight">📋 استفاده</h2>
+        <p class="animate__animated animate__fadeIn">با اجرای برنامه، فید وب‌کم نمایش داده می‌شود. سیستم در زمان واقعی چهره‌ها را شناسایی و اگر چهره‌ای شناسایی شود، نام آن بر روی فید ویدیو نمایش داده می‌شود و جزئیات حضور در یک فایل CSV به نام <code>attendance.csv</code> ثبت می‌شود.</p>
+        <h2 id="contributing" class="animate__animated animate__fadeInRight">🤝 مشارکت</h2>
+        <p class="animate__animated animate__fadeIn">مشارکت‌ها خوش آمدید! لطفاً مسائل را باز کنید یا درخواست‌های کشش برای بهبود پروژه ارسال کنید.</p>
+        <h2 id="license" class="animate__animated animate__fadeInRight">📄 مجوز</h2>
+        <p class="animate__animated animate__fadeIn">این پروژه تحت مجوز MIT منتشر شده است. لطفاً فایل <code>LICENSE</code> را برای جزئیات بیشتر مشاهده کنید.</p>
+        <div class="footer animate__animated animate__fadeIn">
+            <p>ساخته شده با ❤️ توسط <a href="https://github.com/esmail-sarhadi" target="_blank">Esmail Sarhadi</a></p>
+            <p>مخزن پروژه در <a href="https://github.com/esmail-sarhadi/Face-Recognition-Attendance-System">GitHub</a></p>
+        </div>
     </div>
-  </body>
+</body>
 </html>
