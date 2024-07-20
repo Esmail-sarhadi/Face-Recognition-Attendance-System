@@ -1,210 +1,155 @@
 <!DOCTYPE html>
-<html lang="en-US">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="vqq11CWNVkLVnZvjCeZReKc8-FRmgxek2SOWjr35CbY" />
     <link rel="shortcut icon" type="image/png" href="android-chrome-512x512.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Begin Jekyll SEO tag v2.8.0 -->
     <title>Face Recognition Attendance System 📸 | Face-Recognition-Attendance-System</title>
-    <meta name="generator" content="Jekyll v3.9.5" />
-    <meta property="og:title" content="Face Recognition Attendance System 📸" />
-    <meta property="og:locale" content="en_US" />
     <meta name="description" content="An innovative face recognition-based attendance system using webcam for real-time capture and recognition. Efficiently logs attendance details into a CSV file using face_recognition library and OpenCV." />
-    <meta property="og:description" content="An innovative face recognition-based attendance system using webcam for real-time capture and recognition. Efficiently logs attendance details into a CSV file using face_recognition library and OpenCV." />
-    <link rel="canonical" href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/" />
-    <meta property="og:url" content="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/" />
-    <meta property="og:site_name" content="Face-Recognition-Attendance-System" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Face Recognition Attendance System 📸" />
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebSite","description":"An innovative face recognition-based attendance system using webcam for real-time capture and recognition. Efficiently logs attendance details into a CSV file using face_recognition library and OpenCV.","headline":"Face Recognition Attendance System 📸","name":"Face-Recognition-Attendance-System","url":"https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/"}</script>
-    <!-- End Jekyll SEO tag -->
-
     <link rel="stylesheet" href="/Face-Recognition-Attendance-System/assets/css/style.css?v=4e41b1e5a6720d1847102641cd1e20b93f57da5c">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-      body {
-        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-        line-height: 1.6;
-        color: #24292e;
-        background-color: #f6f8fa;
-      }
-      .container-lg {
-        max-width: 1012px;
-        margin-right: auto;
-        margin-left: auto;
-      }
-      h1, h2 {
-        border-bottom: 1px solid #eaecef;
-        padding-bottom: 0.3em;
-      }
-      .markdown-body {
-        box-sizing: border-box;
-        min-width: 200px;
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 45px;
-        background-color: #fff;
-        border: 1px solid #e1e4e8;
-        border-radius: 6px;
-      }
-      @media (max-width: 767px) {
-        .markdown-body {
-          padding: 15px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            color: #24292e;
+            background-color: #f6f8fa;
         }
-      }
-      .footer {
-        margin-top: 3rem;
-        padding-top: 2rem;
-        color: #586069;
-        border-top: 1px solid #eaecef;
-      }
-      .feature-list {
-        list-style-type: none;
-        padding-left: 0;
-      }
-      .feature-list li {
-        margin-bottom: 0.5rem;
-      }
-      .feature-list li:before {
-        content: "\f00c";
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        margin-right: 0.5rem;
-        color: #28a745;
-      }
-      .donation-button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #0366d6;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 6px;
-        transition: background-color 0.2s;
-      }
-      .donation-button:hover {
-        background-color: #044289;
-      }
-      .language-switch {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        display: flex;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 5px 10px;
-        border-radius: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-      .language-switch img {
-        transition: transform 0.3s ease;
-      }
-      .language-switch img:hover {
-        transform: scale(1.1);
-      }
+        .container-lg {
+            max-width: 1012px;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1, h2 {
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #586069;
+        }
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            margin-bottom: 0.5rem;
+        }
+        .feature-list li:before {
+            content: "\f00c";
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 0.5rem;
+            color: #28a745;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0366d6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #044289;
+        }
+        .language-switch {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .language-switch img {
+            transition: transform 0.3s ease;
+        }
+        .language-switch img:hover {
+            transform: scale(1.1);
+        }
+        .animate__animated {
+            animation-duration: 1s;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container-lg px-3 my-5 markdown-body">
-      
-      <div class="language-switch animate__animated animate__fadeIn">
-        <span style="font-size: 1.2em; font-weight: bold; margin-right: 10px;">Language</span>
-        <a href="index.html" style="text-decoration: none; margin: 0 5px;">
-          <img src="https://flagcdn.com/w40/gb.png" width="30" alt="English">
-        </a>
-        <a href="index_fa.html" style="text-decoration: none; margin: 0 5px;">
-          <img src="https://flagcdn.com/w40/ir.png" width="30" alt="Persian">
-        </a>
-      </div>
-      
-      <h1 class="animate__animated animate__fadeInDown"><a href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/">Face-Recognition-Attendance-System</a></h1>
-
-      <h1 id="face-recognition-attendance-system" class="animate__animated animate__fadeInRight">Face Recognition Attendance System 📸👤</h1>
-
-      <p class="animate__animated animate__fadeIn">This project implements an innovative face recognition-based attendance system using a webcam to capture and recognize faces in real-time. The system compares the captured faces with known faces and logs the attendance details (name and timestamp) into a CSV file. It leverages the <code class="language-plaintext highlighter-rouge">face_recognition</code> library for face detection and recognition and uses OpenCV for video processing.</p>
-
-      <h2 id="features" class="animate__animated animate__fadeInLeft">✨ Features</h2>
-
-      <ul class="feature-list animate__animated animate__fadeInUp">
-        <li><strong>Real-time Face Detection and Recognition</strong>: Captures video frames from a webcam and identifies faces in real-time.</li>
-        <li><strong>Attendance Logging</strong>: Logs the attendance details (name and timestamp) into a CSV file.</li>
-        <li><strong>Customizable Known Faces</strong>: Easily add and manage known faces for recognition.</li>
-        <li><strong>Visual Feedback</strong>: Displays a rectangle and name label around recognized faces in the video feed.</li>
-      </ul>
-
-      <h2 id="requirements" class="animate__animated animate__fadeInLeft">🛠️ Requirements</h2>
-
-      <ul class="animate__animated animate__fadeInUp">
-        <li>Python 3.6+ 🐍</li>
-        <li>OpenCV 📸</li>
-        <li>face_recognition 👤</li>
-        <li>numpy 🧮</li>
-      </ul>
-
-      <h2 id="installation" class="animate__animated animate__fadeInLeft">🚀 Installation</h2>
-
-      <ol class="animate__animated animate__fadeInUp">
-        <li><strong>Clone the Repository</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/your-username/face-recognition-attendance.git
-<span class="nb">cd </span>face-recognition-attendance
-</code></pre></div>          </div>
-        </li>
-        <li><strong>Install the Required Libraries</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -r requirements.txt
-</code></pre></div>          </div>
-        </li>
-        <li><strong>Run the Application</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python attendance.py
-</code></pre></div>          </div>
-        </li>
-      </ol>
-
-      <h2 id="usage" class="animate__animated animate__fadeInLeft">📚 Usage</h2>
-
-      <ol class="animate__animated animate__fadeInUp">
-        <li>Ensure your webcam is connected and working.</li>
-        <li>Run the application using <code class="language-plaintext highlighter-rouge">python attendance.py</code>.</li>
-        <li>The system will start capturing video from the webcam and recognizing faces in real-time.</li>
-        <li>Recognized faces will be logged into the <code class="language-plaintext highlighter-rouge">attendance.csv</code> file with the current date and time.</li>
-        <li>Press <code class="language-plaintext highlighter-rouge">q</code> to quit the application.</li>
-      </ol>
-
-      <h2 id="screenshots" class="animate__animated animate__fadeInLeft">📸 Screenshots</h2>
-
-      <p>Coming soon!</p>
-
-      <h2 id="contributing" class="animate__animated animate__fadeInLeft">🤝 Contributing</h2>
-
-      <p>Contributions are welcome! If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.</p>
-
-      <h2 id="license" class="animate__animated animate__fadeInLeft">📝 License</h2>
-
-      <p>This project is licensed under the MIT License.</p>
-
-      <footer class="footer">
-        <div style="display: flex; justify-content: space-between;">
-          <div>
-            <h3>Contact Me</h3>
-            <p>Email: your-email@example.com</p>
-            <p>Twitter: <a href="https://twitter.com/yourprofile" target="_blank">@yourprofile</a></p>
-          </div>
-          <div>
-            <h3>Profile</h3>
-            <p>GitHub: <a href="https://github.com/your-username" target="_blank">your-username</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Name</a></p>
-          </div>
-          <div>
-            <h3>Donate</h3>
-            <p>If you find this project useful, consider buying me a coffee!</p>
-            <a href="https://www.buymeacoffee.com/yourprofile" class="donation-button" target="_blank">Buy Me a Coffee</a>
-          </div>
+        <div class="language-switch">
+            <span style="font-size: 1.2em; font-weight: bold; margin-right: 10px;">Language</span>
+            <a href="index.html" style="text-decoration: none; margin: 0 5px;">
+                <img src="https://flagcdn.com/w40/gb.png" width="30" alt="English">
+            </a>
+            <a href="index_fa.html" style="text-decoration: none; margin: 0 5px;">
+                <img src="https://flagcdn.com/w40/ir.png" width="30" alt="Persian">
+            </a>
         </div>
-      </footer>
+        <h1 class="animate__animated animate__fadeInDown"><a href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/">Face Recognition Attendance System 📸</a></h1>
+        <p class="animate__animated animate__fadeIn">This project implements an innovative face recognition-based attendance system using a webcam to capture and recognize faces in real-time. The system compares the captured faces with known faces and logs the attendance details (name and timestamp) into a CSV file.</p>
+        <h2 id="features" class="animate__animated animate__fadeInLeft">✨ Features</h2>
+        <ul class="feature-list animate__animated animate__fadeInUp">
+            <li><strong>Real-time Face Detection and Recognition</strong>: Captures video frames from a webcam and identifies faces in real-time.</li>
+            <li><strong>Attendance Logging</strong>: Logs the attendance details (name and timestamp) into a CSV file.</li>
+            <li><strong>Customizable Known Faces</strong>: Easily add and manage known faces for recognition.</li>
+            <li><strong>Visual Feedback</strong>: Displays a rectangle and name label around recognized faces in the video feed.</li>
+        </ul>
+        <h2 id="requirements" class="animate__animated animate__fadeInLeft">🛠️ Requirements</h2>
+        <ul>
+            <li>Python 3.6+ 🐍</li>
+            <li>OpenCV 📸</li>
+            <li>face_recognition 👤</li>
+            <li>numpy 🧮</li>
+        </ul>
+        <h2 id="installation" class="animate__animated animate__fadeInLeft">🚀 Installation</h2>
+        <ol>
+            <li><strong>Clone the Repository</strong>
+                <pre><code>git clone https://github.com/your-username/face-recognition-attendance.git
+cd face-recognition-attendance
+</code></pre>
+            </li>
+            <li><strong>Install the Required Packages</strong>
+                <pre><code>pip install opencv-python face_recognition numpy
+</code></pre>
+            </li>
+            <li><strong>Prepare Known Face Images</strong>
+                <ul>
+                    <li>Place your known face images in the <code>photos</code> directory.</li>
+                    <li>Ensure the images are named appropriately (e.g., <code>john_doe.jpg</code>).</li>
+                </ul>
+            </li>
+            <li><strong>Run the Application</strong>
+                <pre><code>python main.py
+</code></pre>
+            </li>
+        </ol>
+        <h2 id="usage" class="animate__animated animate__fadeInLeft">📋 Usage</h2>
+        <p class="animate__animated animate__fadeIn">Upon running the application, the webcam feed will be displayed. The system will detect and recognize faces in real-time. If a face is recognized, the name will be displayed on the video feed, and the attendance details will be logged into a CSV file named <code>attendance.csv</code>.</p>
+        <h2 id="contributing" class="animate__animated animate__fadeInLeft">🤝 Contributing</h2>
+        <p class="animate__animated animate__fadeIn">Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.</p>
+        <h2 id="license" class="animate__animated animate__fadeInLeft">📄 License</h2>
+        <p class="animate__animated animate__fadeIn">This project is licensed under the MIT License - see the <a href="/Face-Recognition-Attendance-System/LICENSE">LICENSE</a> file for details.</p>
+        <h2 id="acknowledgments" class="animate__animated animate__fadeInLeft">🙏 Acknowledgments</h2>
+        <ul class="animate__animated animate__fadeIn">
+            <li>Special thanks to the contributors of the <code>face_recognition</code> library.</li>
+            <li>Inspiration and guidance from the open-source community.</li>
+        </ul>
+        <div class="footer animate__animated animate__fadeIn">
+            <p>Created with ❤️ by <span class="author-name">Esmail Sarhadi</span></p>
+            <p>This site is open source. <a href="https://github.com/Esmail-sarhadi/Face-Recognition-Attendance-System">View on GitHub</a></p>
+        </div>
     </div>
-  </body>
+</body>
 </html>
