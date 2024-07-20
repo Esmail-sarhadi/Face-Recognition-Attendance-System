@@ -89,13 +89,39 @@
       .donation-button:hover {
         background-color: #044289;
       }
+      .language-switch {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      .language-switch img {
+        transition: transform 0.3s ease;
+      }
+      .language-switch img:hover {
+        transform: scale(1.1);
+      }
     </style>
   </head>
   <body>
     <div class="container-lg px-3 my-5 markdown-body">
       
-      <h1><a href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/">Face-Recognition-Attendance-System</a></h1>
+      <div class="language-switch">
+        <span style="font-size: 1.2em; font-weight: bold; margin-right: 10px;">Language</span>
+        <a href="index.html" style="text-decoration: none; margin: 0 5px;">
+          <img src="https://flagcdn.com/w40/gb.png" width="30" alt="English">
+        </a>
+        <a href="index_fa.html" style="text-decoration: none; margin: 0 5px;">
+          <img src="https://flagcdn.com/w40/ir.png" width="30" alt="Persian">
+        </a>
+      </div>
       
+      <h1><a href="https://esmail-sarhadi.github.io/Face-Recognition-Attendance-System/">Face-Recognition-Attendance-System</a></h1>
 
       <h1 id="face-recognition-attendance-system">Face Recognition Attendance System 📸👤</h1>
 
@@ -134,86 +160,38 @@
         <li><strong>Prepare Known Face Images</strong>
           <ul>
             <li>Place your known face images in the <code class="language-plaintext highlighter-rouge">photos</code> directory.</li>
-            <li>Ensure the images are named appropriately (e.g., <code class="language-plaintext highlighter-rouge">jobs.jpg</code>, <code class="language-plaintext highlighter-rouge">leyla.jpg</code>, <code class="language-plaintext highlighter-rouge">tesla.jpg</code>).</li>
+            <li>Ensure the images are named appropriately (e.g., <code class="language-plaintext highlighter-rouge">john_doe.jpg</code>).</li>
           </ul>
         </li>
-      </ol>
-
-      <h2 id="configuration">⚙️ Configuration</h2>
-
-      <ol>
-        <li><strong>Update the Face Files Dictionary</strong>
-          <ul>
-            <li>Edit the <code class="language-plaintext highlighter-rouge">main.py</code> file and update the <code class="language-plaintext highlighter-rouge">face_files</code> dictionary with the paths to your known face images.</li>
-          </ul>
-
-          <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">face_files</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"jobs"</span><span class="p">:</span> <span class="s">"/media/charon/ESMAIL/OLD BOY/D/face_leyla/photos/jobs.jpg"</span><span class="p">,</span>
-    <span class="s">"tesla"</span><span class="p">:</span> <span class="s">"/media/charon/ESMAIL/OLD BOY/D/face_leyla/photos/tesla.jpg"</span>
-<span class="p">}</span>
+        <li><strong>Run the Application</strong>
+          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python main.py
 </code></pre></div>          </div>
         </li>
       </ol>
 
-      <h2 id="usage">💻 Usage</h2>
+      <h2 id="usage">📋 Usage</h2>
 
-      <ol>
-        <li><strong>Run the Script</strong>
-          <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 main.py
-</code></pre></div>          </div>
-        </li>
-        <li><strong>System Operation</strong>
-          <ul>
-            <li>The webcam will start, and the system will begin recognizing faces.</li>
-            <li>Attendance details (name and timestamp) will be logged in <code class="language-plaintext highlighter-rouge">attendance.csv</code>.</li>
-            <li>Recognized faces will be marked with a rectangle and name label in the video feed.</li>
-          </ul>
-        </li>
-        <li><strong>Exit the Program</strong>
-          <ul>
-            <li>Press the 'q' key to exit the video feed and stop the program.</li>
-          </ul>
-        </li>
-      </ol>
-
-      <h2 id="project-structure">📁 Project Structure</h2>
-
-      <ul>
-        <li><code class="language-plaintext highlighter-rouge">main.py</code>: The main script for the face recognition attendance system.</li>
-        <li><code class="language-plaintext highlighter-rouge">photos/</code>: Directory containing known face images.</li>
-        <li><code class="language-plaintext highlighter-rouge">attendance.csv</code>: CSV file where attendance details are logged.</li>
-        <li><code class="language-plaintext highlighter-rouge">README.md</code>: This README file.</li>
-      </ul>
+      <p>Upon running the application, the webcam feed will be displayed. The system will detect and recognize faces in real-time. If a face is recognized, the name will be displayed on the video feed, and the attendance details will be logged into a CSV file named <code class="language-plaintext highlighter-rouge">attendance.csv</code>.</p>
 
       <h2 id="contributing">🤝 Contributing</h2>
 
-      <p>Contributions are welcome! If you have suggestions for improvements or bug fixes, please fork the repository and submit a pull request. Ensure your changes are well-documented and tested.</p>
-
-      <h2 id="profile">👤 Profile</h2>
-
-      <p>Check out my GitHub profile: <a href="https://github.com/Esmail-sarhadi" target="_blank"><i class="fab fa-github"></i> Esmail Sarhadi</a></p>
-
-      <h2 id="project-link">🔗 Project Link</h2>
-
-      <p>View this project on GitHub: <a href="https://github.com/Esmail-sarhadi/Face-Recognition-Attendance-System" target="_blank"><i class="fab fa-github"></i> Face-Recognition-Attendance-System</a></p>
-
-      <h2 id="donation">🙏 Donation</h2>
-
-      <p>If you find this project helpful, consider making a donation:</p>
-      <p><a href="https://nowpayments.io/donation?api_key=REWCYVC-A1AMFK3-QNRS663-PKJSBD2&source=lk_donation&medium=referral" target="_blank" class="donation-button">
-        <i class="fas fa-donate"></i> Donate Crypto
-      </a></p>
+      <p>Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.</p>
 
       <h2 id="license">📄 License</h2>
 
-      <p>This project is licensed under the MIT License. See the <a href="/Face-Recognition-Attendance-System/LICENSE">LICENSE</a> file for more details.</p>
+      <p>This project is licensed under the MIT License - see the <a href="/Face-Recognition-Attendance-System/LICENSE">LICENSE</a> file for details.</p>
 
-      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
-        This site is open source. <a href="https://github.com/Esmail-sarhadi/Face-Recognition-Attendance-System/edit/main/README.md">Improve this page</a>.
+      <h2 id="acknowledgments">🙏 Acknowledgments</h2>
+
+      <ul>
+        <li>Special thanks to the contributors of the <code class="language-plaintext highlighter-rouge">face_recognition</code> library.</li>
+        <li>Inspiration and guidance from the open-source community.</li>
+      </ul>
+
+      <div class="footer">
+        <p>Created with ❤️ by <span class="author-name">Esmail Sarhadi</span></p>
+        <p>This site is open source. <a href="https://github.com/Esmail-sarhadi/Face-Recognition-Attendance-System/edit/main/README.md">Improve this page</a>.</p>
       </div>
-      
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
-    <script>anchors.add();</script>
   </body>
 </html>
